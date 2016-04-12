@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -35,4 +36,11 @@ public class Terrain extends Application {
 	public void mvdroite(){
 		this.joueur.mvdroite();
 	}
+	public void tir(){
+		ImageView tir = this.joueur.tir();
+		tir.setTranslateX(this.joueur.corps().getTranslateX()+285);
+		tir.setTranslateY(this.joueur.corps().getTranslateY()+750);
+		this.root.getChildren().add(tir);
+	}
+
 }

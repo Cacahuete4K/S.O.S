@@ -16,6 +16,9 @@ public class Gestion_Touches implements EventHandler<KeyEvent> {
 		if(event.getCode().equals(KeyCode.RIGHT)){
 			this.terrain.mvdroite();
 		}
+		if(event.getCode().equals(KeyCode.SPACE)){
+			this.terrain.tir();
+		}
 	}
 
 }
