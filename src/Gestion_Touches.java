@@ -5,7 +5,7 @@ import javafx.scene.input.KeyEvent;
 
 public class Gestion_Touches implements EventHandler<KeyEvent> {
 	private Terrain terrain;
-	
+	private long shotTime;
 	public Gestion_Touches(Terrain terrain){
 		this.terrain = terrain;	
 	}
@@ -16,8 +16,9 @@ public class Gestion_Touches implements EventHandler<KeyEvent> {
 		if(event.getCode().equals(KeyCode.RIGHT)){
 			this.terrain.mvdroite();
 		}
-		if(event.getCode().equals(KeyCode.SPACE)){
+		if(event.getCode().equals(KeyCode.SPACE) && shotTime+1500000000< System.nanoTime()){
 			this.terrain.tir();
+			shotTime=System.nanoTime();
 		}
 	}
 

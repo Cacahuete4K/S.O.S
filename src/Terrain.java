@@ -10,15 +10,16 @@ public class Terrain extends Application {
 	private Scene scene;
 	private BorderPane root;
 	private Joueur joueur;
+	private Animation animation;
 	@Override
 	public void start(Stage primaryShow) throws Exception {
 		// TODO Auto-generated method stub
-		Animation animation = new Animation(this);
+		animation = new Animation(this);
 		Gestion_Touches clavier = new Gestion_Touches(this);
 		
 		this.joueur = new Joueur();
-		
 		this.root = new BorderPane();
+		this.root.setTop(this.joueur.vies());
 		this.root.setBottom(this.joueur.corps());
 		BorderPane.setAlignment(this.joueur.corps(), Pos.TOP_CENTER);
 		
@@ -39,9 +40,8 @@ public class Terrain extends Application {
 		this.joueur.mvdroite();
 	}
 	public void tir(){
-
-			ImageView tir = this.joueur.tir();
-			this.root.getChildren().add(tir);
+		ImageView tir = this.joueur.tir();
+		this.root.getChildren().add(tir);
 		
 	}
 	public void mvtir(){
@@ -49,14 +49,28 @@ public class Terrain extends Application {
 		for(int n=0; n<this.root.getChildren().size(); n++){
 			if(this.root.getChildren().get(n).getClass() == ImageView.class){
 				ImageView w = (ImageView) this.root.getChildren().get(n);
-				if(!w.equals(this.joueur.corps())){
-				ImageView tir = w;
-				this.joueur.mvtir(tir);
 				
+				if(!w.equals(this.joueur.corps()) /*A RAJOUTER : DIFFERENT D'ALIEN*/){
+					ImageView tir = w;
+					this.joueur.mvtir(tir);
+				}
 			}
 		}
+	}
+	public void rmvtir(){
+		for(int n=0; n<this.root.getChildren().size(); n++){
+			if(this.root.getChildren().get(n).getClass() == ImageView.class){
+				ImageView w = (ImageView) this.root.getChildren().get(n);
+				
+				if(!w.equals(this.joueur.corps()) /*A RAJOUTER : DIFFERENT D'ALIEN*/ && w.getTranslateY()<=0){
+					this.root.getChildren().remove(n);
+					System.out.println("Supprimé");
+				}
+			}
 		}
 	}
+
+	
 }
 
 

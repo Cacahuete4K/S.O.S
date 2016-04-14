@@ -1,3 +1,4 @@
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 
@@ -5,7 +6,7 @@ public class Joueur {
 	
 	private int vies;
 	private ImageView corps;
-	
+	private Label labelvies;
 	
 	public Joueur() {
 		this.corps = new ImageView("images/joueur.png");
@@ -28,6 +29,11 @@ public class Joueur {
 	}
 
 	//Tir
+	public Label vies(){
+		this.labelvies = new Label();
+		this.labelvies.setText(String.valueOf(this.vies));
+		return this.labelvies;
+	}
 	public ImageView tir(){
 		ImageView tir =new ImageView("images/tir.png");
 		tir.setTranslateX(this.corps().getTranslateX()+285);

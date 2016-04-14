@@ -14,13 +14,16 @@ public class Animation extends AnimationTimer {
 	}
 	
 
-	// each 0,016 second do this:
 	public void handle(long now) {
-		//prout test
-		//testation
 		this.terrain.mvtir();
-	
-	
+		this.terrain.rmvtir();
+		// each 0,016 second do this:
+		int currentSecond = (int) ((now-this.startAt) / 1_000_000_000); 
+		// check if one second has passed	
+				if (currentSecond > this.previousSecond) {
+					// each second do this:
+					this.previousSecond++;
+				}
 	}
 
 }
