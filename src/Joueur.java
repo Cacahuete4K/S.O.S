@@ -30,7 +30,12 @@ public class Joueur {
 	//Tir
 	public ImageView tir(){
 		ImageView tir =new ImageView("images/tir.png");
+		tir.setTranslateX(this.corps().getTranslateX()+285);
+		tir.setTranslateY(this.corps().getTranslateY()+750);
 		return tir;	
 	}
-
+	public void mvtir(ImageView tir){
+		tir.setTranslateY(tir.getTranslateY()-3);
+	}
+	
 }

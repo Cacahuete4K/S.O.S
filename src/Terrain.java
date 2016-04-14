@@ -10,10 +10,10 @@ public class Terrain extends Application {
 	private Scene scene;
 	private BorderPane root;
 	private Joueur joueur;
-	
 	@Override
 	public void start(Stage primaryShow) throws Exception {
 		// TODO Auto-generated method stub
+		Animation animation = new Animation(this);
 		Gestion_Touches clavier = new Gestion_Touches(this);
 		
 		this.joueur = new Joueur();
@@ -28,6 +28,8 @@ public class Terrain extends Application {
 		primaryShow.setScene(this.scene);
 		primaryShow.setTitle("Straight Outta Space (S.O.S)");
 		primaryShow.show();
+		animation.start();
+		
 	}
 	//Fonctions de mouvement du joueur
 	public void mvgauche(){
@@ -37,10 +39,24 @@ public class Terrain extends Application {
 		this.joueur.mvdroite();
 	}
 	public void tir(){
-		ImageView tir = this.joueur.tir();
-		tir.setTranslateX(this.joueur.corps().getTranslateX()+285);
-		tir.setTranslateY(this.joueur.corps().getTranslateY()+750);
-		this.root.getChildren().add(tir);
-	}
 
+			ImageView tir = this.joueur.tir();
+			this.root.getChildren().add(tir);
+		
+	}
+	public void mvtir(){
+	
+		for(int n=0; n<this.root.getChildren().size(); n++){
+			if(this.root.getChildren().get(n).getClass() == ImageView.class){
+				ImageView w = (ImageView) this.root.getChildren().get(n);
+				if(!w.equals(this.joueur.corps())){
+				ImageView tir = w;
+				this.joueur.mvtir(tir);
+				
+			}
+		}
+		}
+	}
 }
+
+
