@@ -16,7 +16,8 @@ public class Animation extends AnimationTimer {
 
 	// each 0,016 second do this:
 	public void handle(long now) {
-		//prout test 
+		//prout test
+		//testation
 		this.terrain.mvtir();
 	
 	
